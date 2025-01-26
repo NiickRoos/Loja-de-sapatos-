@@ -1,1 +1,32 @@
 POST http://localhost:3333/sapatos
+Content-Type: application/json
+
+{
+    "tamanho": 42,
+    "modelo": "vans",
+    "nome": "esporte",
+    "cor":"rosa claro",
+    "preco": 8000
+}
+
+
+###
+
+GET  http://localhost:3333/sapatos
+
+###
+
+PUT  http://localhost:3333/sapatos/745acb7c-cd87-4c3a-b4a0-1eb665217668
+Content-Type: application/json
+
+{
+    "tamanho": 43,
+    "modelo": "vans",
+    "nome": "esporte",
+    "cor":"rosa claro",
+    "preco": 8000
+}
+
+###
+
+DELETE http://localhost:3333/sapatos/24f233db-9d51-4ca1-8190-d6b4ff1655b7
