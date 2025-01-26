@@ -20,7 +20,7 @@ server.post('/sapatos', (request , reply) =>{
 });
 
 server.get('/sapatos', () =>{
- return ' funcionado'
+ return ' funcionadoo'
 });
 
 server.put('/sapatos', () =>{
