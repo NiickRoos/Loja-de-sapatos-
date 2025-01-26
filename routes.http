@@ -30,3 +30,12 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3333/sapatos/24f233db-9d51-4ca1-8190-d6b4ff1655b7
+
+###
+
+PATCH http://localhost:3333/sapatos/997415d2-4814-494a-95a6-a5ddb1a98740
+Content-Type: application/json
+
+{
+    "preco": 7500
+}
