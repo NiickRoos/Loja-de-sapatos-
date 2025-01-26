@@ -19,8 +19,9 @@ server.post('/sapatos', (request , reply) =>{
     return reply.status(201).send()
 });
 
-server.get('/sapatos', () =>{
-   const sapatos = database.list()
+server.get('/sapatos', (request) =>{
+   const search = request.query.search
+   const sapatos = database.list(search)
    console.log(sapatos)
    return sapatos
 });
