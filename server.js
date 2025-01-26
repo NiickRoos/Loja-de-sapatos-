@@ -20,7 +20,7 @@ server.post('/sapatos', (request , reply) =>{
 });
 
 server.get('/sapatos', () =>{
- return 'seu pai é gay'
+ return ' funcionado'
 });
 
 server.put('/sapatos', () =>{
