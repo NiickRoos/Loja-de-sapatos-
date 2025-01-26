@@ -2,21 +2,25 @@ POST http://localhost:3333/sapatos
 Content-Type: application/json
 
 {
-    "tamanho": 42,
-    "modelo": "vans",
-    "nome": "esporte",
-    "cor":"rosa claro",
-    "preco": 8000
+    "tamanho": 37,
+    "modelo": "Converse",
+    "nome": "Shodun",
+    "cor":"roxo escuro",
+    "preco": 500
 }
 
 
 ###
 
-GET  http://localhost:3333/sapatos?search=node
+GET  http://localhost:3333/sapatos?search=Shodun
 
 ###
 
-PUT  http://localhost:3333/sapatos/745acb7c-cd87-4c3a-b4a0-1eb665217668
+GET http://localhost:3333/sapatos
+
+###
+
+PUT  http://localhost:3333/sapatos/78e46487-25ca-43ad-b60f-6d4588a74279
 Content-Type: application/json
 
 {
@@ -29,11 +33,10 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3333/sapatos/24f233db-9d51-4ca1-8190-d6b4ff1655b7
-
+DELETE http://localhost:3333/sapatos/a0b41882-e5d8-47a1-ac94-42cb8d1f2ff8
 ###
 
-PATCH http://localhost:3333/sapatos/997415d2-4814-494a-95a6-a5ddb1a98740
+PATCH http://localhost:3333/sapatos/ebcab52a-5c87-40e5-8451-d4557602b85e
 Content-Type: application/json
 
 {

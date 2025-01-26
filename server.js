@@ -26,60 +26,78 @@ server.post('/sapatos', (request , reply) =>{
 
 server.get('/sapatos', (request) =>{
 
-   const search = request.query.search
-   const sapatos = database.list(search)
-   console.log(sapatos)
-   return sapatos
-
+  const search = request.query.search;
+  console.log('Parâmetro de pesquisa:', search); // Verifica o valor de "search"
+  const sapatos = database.list(search);
+  console.log('Sapatos encontrados:', sapatos); // Verifica se os sapatos estão sendo encontrados
+  return sapatos;
+  
 });
 
 
-server.put('/sapatos/:id', (request, reply) =>{
+server.put('/sapatos/:id', (request, reply) => {
+  const tenisId = request.params.id; // Pegando o ID do sapato
+  const { tamanho, modelo, nome, cor, preco } = request.body; // Pegando os dados do corpo da requisição
 
-  const tenisId = request.params.id
-  const {tamanho,  modelo, nome, cor, preco} = request.body
+  // Atualizando o sapato
+  try {
+    database.update(tenisId, {
+      tamanho,
+      modelo,
+      nome,
+      cor,
+      preco
+    });
 
-  database.update(tenisId, {
-   tamanho,
-   modelo,
-   nome,
-   cor,
-   preco
-  })
-
-  return reply.status(204).send
-
+    // Retornando um status 200 para confirmar que a atualização foi feita
+    return reply.status(200).send({ message: "Sapato atualizado com sucesso" });
+  } catch (error) {
+    // Caso o sapato não seja encontrado, retorna um erro 404
+    return reply.status(404).send({ error: "Sapato não encontrado" });
+  }
 });
+
 
 //Atualizar os recursos
-server.patch('/sapatos/:id', (request, reply) =>{
 
+server.patch('/sapatos/:id', (request, reply) => {
   const tenisId = request.params.id;
   const Dadosatualizados = request.body;
   const sapatos = database.list();
-  const  sapato = sapatos.find((tenis) => tenis.id = tenisId);
+  const sapato = sapatos.find((tenis) => tenis.id === tenisId);
 
   if (!sapato) { // Verifica se o tênis existe.
-    return reply.status(404).send({ error: 'Tênis não encontrado' }); // Retorna um erro 404 se o tênis não for encontrado.
+    return reply.status(404).send({ error: 'Tênis não encontrado' });
   }
 
-  const sapatoAtualizado = { ...sapato, ...Dadosatualizados }; 
   // Atualiza apenas os atributos enviados. Os atributos ausentes permanecem iguais ao original.
+  const sapatoAtualizado = { ...sapato, ...Dadosatualizados };
 
-  database.update(tenisId, sapatoAtualizado); 
   // Substitui o objeto original pelo objeto atualizado no banco de dados em memória.
+  database.update(tenisId, sapatoAtualizado);
 
-  return reply.status(204).send(); 
-
+  // Retorna o sapato atualizado com status 200 OK
+  return reply.status(200).send(sapatoAtualizado);
 });
 
-server.delete('/sapatos/:id', (request, reply) =>{
 
- const tenisId = request.params.id
- database.delete(tenisId)
- return reply.status(204).send()
+server.delete('/sapatos/:id', (request, reply) => {
+  const tenisId = request.params.id;
 
+  // Tente encontrar o sapato antes de deletá-lo
+  const sapato = database.list().find((tenis) => tenis.id === tenisId);
+
+  if (!sapato) {
+    return reply.status(404).send({ error: 'Tênis não encontrado' });
+  }
+
+  // Deletar o sapato
+  database.delete(tenisId);
+
+  // Retornar mensagem de sucesso
+  return reply.status(200).send({ message: 'Sapato deletado com sucesso' });
 });
+
 
 server.listen({ port: 3333 }, (err, address) => {
 
@@ -88,5 +106,5 @@ server.listen({ port: 3333 }, (err, address) => {
       process.exit(1);
     }
     console.log(`Servidor rodando em ${address}`);
-    
+
   });
