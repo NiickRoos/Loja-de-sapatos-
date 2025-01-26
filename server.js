@@ -35,8 +35,10 @@ server.delete('/sapatos', () =>{
 
 });
 
-server.listen({
-  port: 3333,
-
-});
-    
+server.listen({ port: 3333 }, (err, address) => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+    console.log(`Servidor rodando em ${address}`);
+  });
