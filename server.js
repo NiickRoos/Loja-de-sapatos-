@@ -8,14 +8,15 @@ const database = new Databasememory()
 
 server.post('/sapatos', (request , reply) =>{
   
-    const {tamanho,  modelo, nome, cor, preco} = request.body
+    const {tamanho,  modelo, nome, cor, preco, acessorios} = request.body
 
     database.create({
         tamanho: tamanho,
         modelo: modelo,
         nome: nome,
         cor: cor,
-        preco: preco
+        preco: preco,
+        acessorios: acessorios
     })
 
     console.log(database.list())
@@ -46,7 +47,8 @@ server.put('/sapatos/:id', (request, reply) => {
       modelo,
       nome,
       cor,
-      preco
+      preco,
+      acessorios
     });
 
     // Retornando um status 200 para confirmar que a atualização foi feita

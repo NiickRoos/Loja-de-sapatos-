@@ -6,7 +6,8 @@ Content-Type: application/json
     "modelo": "Converse",
     "nome": "Shodun",
     "cor":"roxo escuro",
-    "preco": 500
+    "preco": 500,
+    "acessorios": "flores de cardaço"
 }
 
 
@@ -28,7 +29,8 @@ Content-Type: application/json
     "modelo": "vans",
     "nome": "esporte",
     "cor":"rosa claro",
-    "preco": 8000
+    "preco": 8000,
+    "acessorios": "buttons de cogumelo"
 }
 
 ###
